@@ -8,6 +8,11 @@
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\GeoGenTwo.ContentModule\GeoGenTwo.ContentModule.csproj" />
+    <ProjectReference Include="..\..\GeoGenTwo.SettingsModule\GeoGenTwo.SettingsModule.csproj" />
     <ProjectReference Include="..\GeoGenTwo.Core\GeoGenTwo.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>
