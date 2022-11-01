@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using GeoGenTwo.Core;
+using Prism.Ioc;
+using Prism.Regions;
+using System.Windows;
 
 namespace GeoGenTwo.Views
 {

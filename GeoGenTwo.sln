@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoGenTwo", "GeoGenTwo\GeoGenTwo\GeoGenTwo.csproj", "{EA7C0E9F-4C41-4C0C-A723-965AB98BE9B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoGenTwo.MainModule", "GeoGenTwo\GeoGenTwo\GeoGenTwo.MainModule.csproj", "{EA7C0E9F-4C41-4C0C-A723-965AB98BE9B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoGenTwo.Core", "GeoGenTwo\GeoGenTwo.Core\GeoGenTwo.Core.csproj", "{5CF68E9A-18EF-4D9A-9771-84184132C4A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoGenTwo.UnitTests", "GeoGenTwo.UnitTests\GeoGenTwo.UnitTests.csproj", "{AF0A5CF5-0B00-424F-841C-0AF8148BFB37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoGenTwo.UnitTests", "GeoGenTwo.UnitTests\GeoGenTwo.UnitTests.csproj", "{AF0A5CF5-0B00-424F-841C-0AF8148BFB37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoGenTwo.ContentModule", "GeoGenTwo.ContentModule\GeoGenTwo.ContentModule.csproj", "{67AD6F18-A7E9-4292-A71A-B309A4D73074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoGenTwo.SettingsModule", "GeoGenTwo.SettingsModule\GeoGenTwo.SettingsModule.csproj", "{00D7F601-0022-4142-8BBE-FEA62A2E94B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{AF0A5CF5-0B00-424F-841C-0AF8148BFB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF0A5CF5-0B00-424F-841C-0AF8148BFB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF0A5CF5-0B00-424F-841C-0AF8148BFB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67AD6F18-A7E9-4292-A71A-B309A4D73074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AD6F18-A7E9-4292-A71A-B309A4D73074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AD6F18-A7E9-4292-A71A-B309A4D73074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AD6F18-A7E9-4292-A71A-B309A4D73074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D7F601-0022-4142-8BBE-FEA62A2E94B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D7F601-0022-4142-8BBE-FEA62A2E94B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D7F601-0022-4142-8BBE-FEA62A2E94B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D7F601-0022-4142-8BBE-FEA62A2E94B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

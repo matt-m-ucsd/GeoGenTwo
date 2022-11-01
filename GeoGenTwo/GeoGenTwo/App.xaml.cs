@@ -1,4 +1,6 @@
-﻿using GeoGenTwo.Views;
+﻿using GeoGenTwo.ContentModule;
+using GeoGenTwo.SettingsModule;
+using GeoGenTwo.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
@@ -22,7 +24,10 @@ namespace GeoGenTwo
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            //moduleCatalog.AddModule<ModuleNameModule>();
+            base.ConfigureModuleCatalog(moduleCatalog);
+            moduleCatalog.AddModule<MainModule.MainModule>();
+            moduleCatalog.AddModule<SettingsModuleModule>();
+            moduleCatalog.AddModule<ContentModuleModule>();
         }
     }
 }
