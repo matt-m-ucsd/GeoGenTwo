@@ -2,10 +2,9 @@
 
 namespace GeoGenTwo.ContentModule.ViewModels
 {
-    public class CanvasViewModel : BindableBase
+    public class SettingsViewModel : BindableBase
     {
-
-        public CanvasViewModel()
+        public SettingsViewModel()
         {
 
         }

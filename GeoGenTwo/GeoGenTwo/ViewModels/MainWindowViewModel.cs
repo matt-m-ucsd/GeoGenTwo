@@ -1,4 +1,5 @@
-﻿using GeoGenTwo.Core;
+﻿using GeoGenTwo.ContentModule.Views;
+using GeoGenTwo.Core;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -15,10 +16,9 @@ namespace GeoGenTwo.MainModule.ViewModels
         private IRegion _interactionRegion;
         private IRegion _contentRegion;
 
-        // TODO: implement these
-        //private CanvasView _canvasView;
-        //private SetingsView _settingsView;
-        //private AdvancedSetingsView _advSettingsView;
+        private CanvasView _canvasView;
+        private SettingsView _settingsView;
+        //private AdvancedSettingsView _advSettingsView;
         #endregion
 
         #region Properties
@@ -47,16 +47,15 @@ namespace GeoGenTwo.MainModule.ViewModels
 
         private void Initialize()
         {
-            //_canvasView = _container.Resolve<CanvasView>();
-            //_settingsView = _container.Resolve<SetingsView>();
-            //_advSettingsView = _container.Resolve<AdvancedSetingsView>();
+            _canvasView = _container.Resolve<CanvasView>();
+            _settingsView = _container.Resolve<SettingsView>();
+            //_advSettingsView = _container.Resolve<AdvancedSettingsView>();
 
             _contentRegion = _regionManager.Regions[RegionNames.ContentRegion];
-            //_contentRegion.Add(_canvasView);
+            _contentRegion.Add(_canvasView);
 
             _interactionRegion = _regionManager.Regions[RegionNames.InteractionRegion];
-            //_interactionRegion.Add(_canvasView);
-            //_interactionRegion.Add(_canvasView);
+            _interactionRegion.Add(_settingsView);
         }
 
         #endregion
