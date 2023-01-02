@@ -1,14 +1,10 @@
-﻿using GeoGenTwo.Core.Mvvm;
+﻿using GeoGenTwo.Core;
+using GeoGenTwo.Core.Mvvm;
 using GeoGenTwo.SettingsModule.Interfaces;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeoGenTwo.SettingsModule.ViewModels
 {
@@ -35,7 +31,8 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         }
 
         public DelegateCommand GeneratePatternCommand { get; private set; }
-        
+        public DelegateCommand SwitchSettingsModeCommand { get; private set; }
+
         #endregion
 
         #region Constructor(s)
@@ -46,17 +43,27 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _eventAggregator = eventAggregator;
             _settings = settings;
 
-            GeneratePatternCommand = new DelegateCommand(GeneratePattern);
+            GeneratePatternCommand = new DelegateCommand(GeneratePattern_Command);
+            SwitchSettingsModeCommand = new DelegateCommand(SwitchSettingsMode_Command);
         }
 
         #endregion
 
+        #region Methods
+
         #region Callbacks
 
-        private void GeneratePattern()
+        private void GeneratePattern_Command()
         {
-
+            // pass to PatternGenerator
         }
+
+        private void SwitchSettingsMode_Command()
+        {
+            _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(true);
+        }
+
+        #endregion
 
         #endregion
     }

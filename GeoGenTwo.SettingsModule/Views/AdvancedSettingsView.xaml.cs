@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GeoGenTwo.ContentModule.Views
+namespace GeoGenTwo.SettingsModule.Views
 {
     /// <summary>
-    /// Interaction logic for SettingsView.xaml
+    /// Interaction logic for AdvancedSettingsView.xaml
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class AdvancedSettingsView : UserControl
     {
-        public SettingsView()
+        public AdvancedSettingsView()
         {
             InitializeComponent();
         }

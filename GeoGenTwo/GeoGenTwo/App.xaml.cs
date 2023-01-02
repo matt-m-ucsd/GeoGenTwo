@@ -1,5 +1,6 @@
 ﻿using GeoGenTwo.ContentModule;
 using GeoGenTwo.SettingsModule;
+using GeoGenTwo.SettingsModule.ViewModels;
 using GeoGenTwo.Views;
 using Prism.Ioc;
 using Prism.Modularity;

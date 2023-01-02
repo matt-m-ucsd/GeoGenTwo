@@ -1,4 +1,5 @@
-﻿using GeoGenTwo.ContentModule.Views;
+﻿using GeoGenTwo.ContentModule.ViewModels;
+using GeoGenTwo.ContentModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -14,7 +15,7 @@ namespace GeoGenTwo.ContentModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.Register<CanvasViewModel>();
         }
     }
 }

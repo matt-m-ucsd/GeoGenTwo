@@ -5,12 +5,22 @@ namespace GeoGenTwo.Core.Mvvm
 {
     public class RegionViewModelBase : ViewModelBase, INavigationAware, IConfirmNavigationRequest
     {
+        #region Properties
+
         protected IRegionManager RegionManager { get; private set; }
+
+        #endregion
+
+        #region Constructor
 
         public RegionViewModelBase(IRegionManager regionManager)
         {
             RegionManager = regionManager;
         }
+
+        #endregion
+
+        #region Methods
 
         public virtual void ConfirmNavigationRequest(NavigationContext navigationContext, Action<bool> continuationCallback)
         {
@@ -31,5 +41,7 @@ namespace GeoGenTwo.Core.Mvvm
         {
 
         }
+
+        #endregion
     }
 }

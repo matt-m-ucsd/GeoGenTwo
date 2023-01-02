@@ -4,13 +4,13 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:core="clr-namespace:GeoGenTwo.Core;assembly=GeoGenTwo.Core"
-        Title="{Binding Title}" Height="350" Width="525" >
+        Title="{Binding Title}" Height="720" Width="1280" >
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InteractionRegion}" />
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InteractionRegion}" Height="720" Width="200"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" Height="720" Width="1080"/>
         </StackPanel>
     </StackPanel>
 </Window>
