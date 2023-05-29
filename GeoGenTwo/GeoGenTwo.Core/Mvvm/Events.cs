@@ -1,11 +1,9 @@
 ﻿using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GeoGenTwo.Core.Interfaces;
 
 namespace GeoGenTwo.Core.Mvvm
 {
+    public class GeneratePatternEvent : PubSubEvent<object> { }
+    public class SettingsChangedEvent : PubSubEvent<ISettings> { }
     public class SettingsModeChangedEvent : PubSubEvent<bool> { }
 }
