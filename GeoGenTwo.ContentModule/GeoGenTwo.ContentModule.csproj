@@ -6,4 +6,8 @@
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeoGenTwo.SettingsModule\GeoGenTwo.SettingsModule.csproj" />
+    <ProjectReference Include="..\GeoGenTwo\GeoGenTwo.Core\GeoGenTwo.Core.csproj" />
+  </ItemGroup>
 </Project>

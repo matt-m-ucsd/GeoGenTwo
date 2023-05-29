@@ -3,11 +3,11 @@
 namespace GeoGenTwo.ContentModule.Views
 {
     /// <summary>
-    /// Interaction logic for CanvasView.xaml
+    /// Interaction logic for InteractionWindowView
     /// </summary>
-    public partial class CanvasView : UserControl
+    public partial class InteractionWindowView : UserControl
     {
-        public CanvasView()
+        public InteractionWindowView()
         {
             InitializeComponent();
         }
