@@ -1,13 +1,8 @@
 ﻿using GeoGenTwo.Core.Mvvm;
-using GeoGenTwo.SettingsModule.Interfaces;
+using GeoGenTwo.Core.Interfaces;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeoGenTwo.SettingsModule.ViewModels
 {

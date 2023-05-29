@@ -7,7 +7,12 @@
         Title="{Binding Title}" Height="720" Width="1280" >
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InteractionRegion}" Height="720" Width="200"/>
+            <StackPanel Orientation="Vertical">
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InteractionRegion}" Height="360" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SettingsRegion}" Height="360" Width="200"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" Height="720" Width="1080"/>

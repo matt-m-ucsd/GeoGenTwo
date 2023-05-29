@@ -1,4 +1,4 @@
-﻿using GeoGenTwo.SettingsModule.Interfaces;
+﻿using GeoGenTwo.Core.Interfaces;
 using Prism.Mvvm;
 
 namespace GeoGenTwo.SettingsModule

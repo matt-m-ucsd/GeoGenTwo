@@ -4,11 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="200"
+             d:DesignHeight="360" d:DesignWidth="200"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True" >
-    <StackPanel Orientation="Vertical" Height="720" Width="200">
-        <Button x:Name="GeneratePatternButton" Margin="20,5,20,5" Command="{Binding GeneratePatternCommand}">Generate Pattern</Button>
+    <StackPanel Orientation="Vertical" Height="360" Width="200">
         <Button x:Name="SwitchSettingsModeButton" Margin="20,5,20,5" Command="{Binding SwitchSettingsModeCommand}">Advanced Settings</Button>
     </StackPanel>
 </UserControl>

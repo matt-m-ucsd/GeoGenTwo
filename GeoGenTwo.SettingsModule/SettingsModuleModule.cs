@@ -1,9 +1,7 @@
-﻿using GeoGenTwo.SettingsModule.Interfaces;
+﻿using GeoGenTwo.Core.Interfaces;
 using GeoGenTwo.SettingsModule.ViewModels;
-using GeoGenTwo.SettingsModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 
 namespace GeoGenTwo.SettingsModule
 {
