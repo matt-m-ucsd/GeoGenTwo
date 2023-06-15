@@ -34,6 +34,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
         private void GeneratePattern_Command()
         {
             // publish event for CVM
+            _eventAggregator.GetEvent<GeneratePatternEvent>().Publish();
         }
 
         #endregion

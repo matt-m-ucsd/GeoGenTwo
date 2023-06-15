@@ -8,6 +8,6 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid Height="720" Width="1080">
-        <Label Margin="28,72,28,72" Content="TEST CANVAS VIEW" BorderBrush="Black" BorderThickness="5"/>
+        
     </Grid>
 </UserControl>

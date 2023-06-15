@@ -46,9 +46,10 @@ namespace GeoGenTwo.ContentModule.ViewModels
         }
 
 
-        private void OnGeneratePatternEventReceived(object msg)
+        private void OnGeneratePatternEventReceived()
         {
             // TODO: implementation
+            CanvasString = "TEST CANVAS VM STRING #2";
         }
 
         #endregion
