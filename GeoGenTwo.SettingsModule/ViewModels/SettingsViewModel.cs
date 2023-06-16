@@ -5,6 +5,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using System;
+using System.Windows.Input;
 
 namespace GeoGenTwo.SettingsModule.ViewModels
 {
@@ -14,6 +15,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         private IEventAggregator _eventAggregator;
         private ISettings _settings;
+        private int _numLines = SettingsConstants.DEFAULT_NUM_LINES;
 
         #endregion
 
@@ -24,6 +26,12 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             get { return true; }
         }
 
+        public int NumLines
+        {
+            get { return _numLines; }
+            set { SetProperty(ref _numLines, value); }
+        }
+
         public ISettings Settings
         {
             get { return _settings; }
@@ -31,6 +39,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         }
 
         public DelegateCommand SwitchSettingsModeCommand { get; private set; }
+        public DelegateCommand SliderValueChangedCommand { get; private set; }
 
         #endregion
 
@@ -43,11 +52,10 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _settings = settings;
 
             SwitchSettingsModeCommand = new DelegateCommand(SwitchSettingsMode_Command);
+            SliderValueChangedCommand = new DelegateCommand(SliderValueChanged_Command);
         }
 
         #endregion
-
-        #region Methods
 
         #region Callbacks
 
@@ -56,7 +64,17 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(true);
         }
 
+        private void SliderValueChanged_Command()
+        {
+            //var settingsCopy = new Settings();
+            //settingsCopy.NumLines = NumLines;
+            //Settings = settingsCopy;
+        }
+
         #endregion
+
+        #region Methods
+
 
         #endregion
     }
