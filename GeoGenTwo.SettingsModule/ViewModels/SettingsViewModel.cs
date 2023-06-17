@@ -29,7 +29,10 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         public int NumLines
         {
             get { return _numLines; }
-            set { SetProperty(ref _numLines, value); }
+            set { 
+                SetProperty(ref _numLines, value);
+                _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
+            }
         }
 
         public ISettings Settings
@@ -39,7 +42,6 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         }
 
         public DelegateCommand SwitchSettingsModeCommand { get; private set; }
-        public DelegateCommand SliderValueChangedCommand { get; private set; }
 
         #endregion
 
@@ -52,7 +54,6 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _settings = settings;
 
             SwitchSettingsModeCommand = new DelegateCommand(SwitchSettingsMode_Command);
-            SliderValueChangedCommand = new DelegateCommand(SliderValueChanged_Command);
         }
 
         #endregion
@@ -62,13 +63,6 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         private void SwitchSettingsMode_Command()
         {
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(true);
-        }
-
-        private void SliderValueChanged_Command()
-        {
-            //var settingsCopy = new Settings();
-            //settingsCopy.NumLines = NumLines;
-            //Settings = settingsCopy;
         }
 
         #endregion

@@ -33,7 +33,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         #endregion
 
-        #region Constructor
+        #region Constructor/Destructor
 
         public CanvasViewModel(IRegionManager regionManager, IEventAggregator eventAggregator) : base(regionManager)
         {
@@ -44,6 +44,12 @@ namespace GeoGenTwo.ContentModule.ViewModels
             _eventAggregator.GetEvent<GeneratePatternEvent>().Subscribe(OnGeneratePatternEventReceived);
         }
 
+        public override void Destroy()
+        {
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Unsubscribe(OnSettingsChangedEventReceived);
+            _eventAggregator.GetEvent<GeneratePatternEvent>().Unsubscribe(OnGeneratePatternEventReceived);
+        }
+
         #endregion
 
         #region Callbacks
@@ -52,7 +58,6 @@ namespace GeoGenTwo.ContentModule.ViewModels
         {
             Settings = settings;
         }
-
 
         private void OnGeneratePatternEventReceived()
         {

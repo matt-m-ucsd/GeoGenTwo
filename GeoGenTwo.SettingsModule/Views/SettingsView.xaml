@@ -25,13 +25,7 @@
                                       Converter={StaticResource IntegerToDoubleConverter}}"
                     Maximum="{Binding Source={x:Static settings:SettingsConstants.MAX_NUM_lINES}, 
                                       Converter={StaticResource IntegerToDoubleConverter}}"
-                    Value="{Binding NumLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="ValueChanged">
-                        <i:InvokeCommandAction Command="{Binding SliderValueChangedCommand}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Slider>
+                    Value="{Binding NumLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox VerticalContentAlignment="Center" Height="20" Width="40" Margin="10,0,0,0">
                 <TextBox.Text>
                     <Binding Path="NumLines" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">

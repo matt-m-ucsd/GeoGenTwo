@@ -7,7 +7,12 @@
              d:DesignHeight="360" d:DesignWidth="200"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True" >
-    <StackPanel Orientation="Vertical" Height="360" Width="200">
-        <Button x:Name="SwitchToBaseSettingsModeButton" Margin="20,5,20,5" Command="{Binding SwitchToBaseSettingsModeCommand}">Exit Advanced Settings</Button>
+    <StackPanel Orientation="Vertical" Height="360" Width="200" HorizontalAlignment="Center">
+        <Button Content="Choose Save Directory"
+                HorizontalAlignment="Center"/>
+        <Button Content="Exit Advanced Settings"
+                HorizontalAlignment="Center"
+                Command="{Binding SwitchToBaseSettingsModeCommand}" 
+                Margin="0,10,0,0"/>
     </StackPanel>
 </UserControl>
