@@ -6,6 +6,9 @@ using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Linq;
+using GeoGenTwo.Core;
+using System;
+using System.Collections.Generic;
 
 namespace GeoGenTwo.SettingsModule.ViewModels
 {
@@ -15,37 +18,64 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         private IEventAggregator _eventAggregator;
         private ISettings _settings;
-        private SolidColorBrushItem _lineColor;
-        private SolidColorBrushItem _backgroundColor;
+        private SolidColorBrushItem _lineBrush;
+        private SolidColorBrushItem _backgroundBrush;
+        private Resolution _portraitResolution;
+        private Resolution _landscapeResolution;
 
         #endregion
 
         #region Properties
 
+        public ObservableCollection<SolidColorBrushItem> BrushColorOptions { get; set; }
+        public ObservableCollection<Resolution> PortraitResolutionOptions { get; set; }
+        public ObservableCollection<Resolution> LandscapeResolutionOptions { get; set; }
+
         public ISettings Settings
         {
             get { return _settings; }
-            set { 
-                SetProperty(ref _settings, value); 
+            set
+            {
+                SetProperty(ref _settings, value);
             }
         }
 
-        public ObservableCollection<SolidColorBrushItem> ColorOptions { get; set; }
-
-        public SolidColorBrushItem LineColor
+        public SolidColorBrushItem LineBrush
         {
-            get { return _lineColor; }
-            set { 
-                SetProperty(ref _lineColor, value);
+            get { return _lineBrush; }
+            set
+            {
+                SetProperty(ref _lineBrush, value);
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
 
-        public SolidColorBrushItem BackgroundColor
+        public SolidColorBrushItem BackgroundBrush
         {
-            get { return _backgroundColor; }
-            set { 
-                SetProperty(ref _backgroundColor, value);
+            get { return _backgroundBrush; }
+            set
+            {
+                SetProperty(ref _backgroundBrush, value);
+                _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
+            }
+        }
+
+        public Resolution PortraitResolution
+        {
+            get { return _portraitResolution; }
+            set
+            {
+                SetProperty(ref _portraitResolution, value);
+                _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
+            }
+        }
+
+        public Resolution LandscapeResolution
+        {
+            get { return _landscapeResolution; }
+            set 
+            { 
+                SetProperty(ref _landscapeResolution, value);
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
@@ -78,31 +108,64 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         private void Initialize()
         {
-            ColorOptions = new ObservableCollection<SolidColorBrushItem>
+            PopulateColorOptionsList();
+            SetDefaultColors();
+
+            PopulateResolutionOptionsLists();
+            SetDefaultResolutions();
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+        }
+
+        private void PopulateColorOptionsList()
+        {
+            BrushColorOptions = new ObservableCollection<SolidColorBrushItem>
             {
-                new SolidColorBrushItem(new SolidColorBrush(Colors.Red), "Red"),
-                new SolidColorBrushItem(new SolidColorBrush(Colors.Green), "Green"),
-                new SolidColorBrushItem(new SolidColorBrush(Colors.Blue), "Blue"),
-                new SolidColorBrushItem(new SolidColorBrush(Colors.Black), "Black"),
-                new SolidColorBrushItem(new SolidColorBrush(Colors.White), "White")
+                new SolidColorBrushItem(Colors.Red, "Red"),
+                new SolidColorBrushItem(Colors.Green, "Green"),
+                new SolidColorBrushItem(Colors.Blue, "Blue"),
+                new SolidColorBrushItem(Colors.Black, "Black"),
+                new SolidColorBrushItem(Colors.White, "White")
+            };
+        }
+
+        private void SetDefaultColors()
+        {
+            var lineBrushColor = ((SolidColorBrush)_settings.LineBrush).Color;
+            var backgroundBrushColor = ((SolidColorBrush)_settings.BackgroundBrush).Color;
+            LineBrush = BrushColorOptions.FirstOrDefault(item => item.ColorBrush.Color.Equals(lineBrushColor));
+            BackgroundBrush = BrushColorOptions.FirstOrDefault(item => item.ColorBrush.Color.Equals(backgroundBrushColor));
+        }
+
+        private void PopulateResolutionOptionsLists()
+        {
+            LandscapeResolutionOptions = new ObservableCollection<Resolution>
+            {
+                new Resolution(1080, 1920)
             };
 
-            LineColor = ColorOptions.FirstOrDefault(item => item.ColorBrush.Color == _settings.LineColor);
-            BackgroundColor = ColorOptions.FirstOrDefault(item => item.ColorBrush.Color == _settings.BackgroundColor);
+            PortraitResolutionOptions = new ObservableCollection<Resolution>
+            {
+                new Resolution(1920, 1080)
+            };
+        }
+        private void SetDefaultResolutions()
+        {
+            PortraitResolution = PortraitResolutionOptions.FirstOrDefault(item => item.Equals(Settings.PortraitResolution));
+            LandscapeResolution = LandscapeResolutionOptions.FirstOrDefault(item => item.Equals(Settings.LandscapeResolution));
         }
 
         #endregion
 
         #region Callbacks
 
-        #region Overrides
-
         private void SwitchToBaseSettingsMode_Command()
         {
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(false);
         }
-
-        #endregion
 
         #endregion
     }

@@ -1,4 +1,5 @@
-﻿using GeoGenTwo.Core.Interfaces;
+﻿using GeoGenTwo.Core;
+using GeoGenTwo.Core.Interfaces;
 using Prism.Mvvm;
 using System.Windows.Media;
 
@@ -9,8 +10,10 @@ namespace GeoGenTwo.SettingsModule
         #region Fields
 
         private int _numLines;
-        private Color _lineColor;
-        private Color _backgroundColor;
+        private Brush _lineColor;
+        private Brush _backgroundColor;
+        private Resolution _portraitResolution;
+        private Resolution _landscapeResolution;
 
         #endregion
 
@@ -22,16 +25,28 @@ namespace GeoGenTwo.SettingsModule
             set { SetProperty(ref _numLines, value); }
         }
 
-        public Color LineColor
+        public Brush LineBrush
         {
             get { return _lineColor;  } 
             set { SetProperty(ref _lineColor, value); }
         }
 
-        public Color BackgroundColor
+        public Brush BackgroundBrush
         {
             get { return _backgroundColor; }
             set { SetProperty(ref _backgroundColor, value); }
+        }
+
+        public Resolution PortraitResolution
+        {
+            get { return _portraitResolution; }
+            set { SetProperty(ref _portraitResolution, value); }
+        }
+
+        public Resolution LandscapeResolution
+        {
+            get { return _landscapeResolution; }
+            set { SetProperty(ref _landscapeResolution, value); }
         }
 
         #endregion
@@ -41,8 +56,10 @@ namespace GeoGenTwo.SettingsModule
         public Settings()
         {
             NumLines = SettingsConstants.DEFAULT_NUM_LINES;
-            LineColor = SettingsConstants.DEFAULT_LINE_COLOR;
-            BackgroundColor = SettingsConstants.DEFAULT_BACKGROUND_COLOR;
+            LineBrush = SettingsConstants.DEFAULT_LINE_COLOR;
+            BackgroundBrush = SettingsConstants.DEFAULT_BACKGROUND_COLOR;
+            PortraitResolution = new Resolution(1080, 1920);
+            LandscapeResolution = new Resolution(1920, 1080);
         }
 
         #endregion

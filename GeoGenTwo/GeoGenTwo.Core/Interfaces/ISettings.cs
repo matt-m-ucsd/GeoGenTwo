@@ -5,7 +5,9 @@ namespace GeoGenTwo.Core.Interfaces
     public interface ISettings
     {
         int NumLines { get; set; }
-        Color LineColor { get; set; }
-        Color BackgroundColor { get; set; }
+        Brush LineBrush { get; set; }
+        Brush BackgroundBrush { get; set; }
+        Resolution LandscapeResolution { get; set; }
+        Resolution PortraitResolution { get; set; }
     }
 }

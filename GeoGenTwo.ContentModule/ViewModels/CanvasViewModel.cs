@@ -1,8 +1,8 @@
 ﻿using GeoGenTwo.Core.Interfaces;
 using GeoGenTwo.Core.Mvvm;
 using Prism.Events;
-using Prism.Regions;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace GeoGenTwo.ContentModule.ViewModels
@@ -30,6 +30,8 @@ namespace GeoGenTwo.ContentModule.ViewModels
             get { return _lines; }
             set { SetProperty(ref _lines, value); }
         }
+
+        public Brush BackGroundColor => Settings.BackgroundBrush;
 
         #endregion
 

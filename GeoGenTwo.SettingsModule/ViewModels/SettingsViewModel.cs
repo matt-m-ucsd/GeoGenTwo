@@ -47,7 +47,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         #endregion
 
-        #region Constructor(s)
+        #region Constructor
 
         public SettingsViewModel(IEventAggregator eventAggregator, ISettings settings) 
             : base()
@@ -71,6 +71,10 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         #region Methods
 
+        public override void Destroy()
+        {
+            base.Destroy();
+        }
 
         #endregion
     }

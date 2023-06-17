@@ -11,8 +11,8 @@
 
         <TextBlock Text="Line Color:" FontSize="16" FontWeight="SemiBold" 
                    HorizontalAlignment="Center" Margin="-45,0,0,5" />
-        <ComboBox ItemsSource="{Binding ColorOptions}"
-                  SelectedItem="{Binding LineColor, Mode=TwoWay}"
+        <ComboBox ItemsSource="{Binding BrushColorOptions}"
+                  SelectedItem="{Binding LineBrush, Mode=TwoWay}"
                   Width="125"
                   Margin="0,0,0,10" HorizontalAlignment="Center" >
             <ComboBox.ItemTemplate>
@@ -27,8 +27,8 @@
 
         <TextBlock Text="Background Color:" FontSize="16" FontWeight="SemiBold" 
                    HorizontalAlignment="Center" Margin="10,0,0,5" />
-        <ComboBox ItemsSource="{Binding ColorOptions}"
-                  SelectedItem="{Binding BackgroundColor, Mode=TwoWay}"
+        <ComboBox ItemsSource="{Binding BrushColorOptions}"
+                  SelectedItem="{Binding BackgroundBrush, Mode=TwoWay}"
                   Width="125"
                   Margin="0,0,0,10" HorizontalAlignment="Center" >
             <ComboBox.ItemTemplate>
