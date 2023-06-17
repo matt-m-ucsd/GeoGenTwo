@@ -21,10 +21,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         #region Properties
 
-        public bool KeepAlive
-        {
-            get { return true; }
-        }
+        public bool KeepAlive => true;
 
         public int NumLines
         {
@@ -41,14 +38,19 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             set { SetProperty(ref _settings, value); }
         }
 
+
+        #endregion
+
+        #region Commands
+
         public DelegateCommand SwitchSettingsModeCommand { get; private set; }
 
         #endregion
 
         #region Constructor(s)
 
-        public SettingsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, ISettings settings) 
-            : base(regionManager)
+        public SettingsViewModel(IEventAggregator eventAggregator, ISettings settings) 
+            : base()
         {
             _eventAggregator = eventAggregator;
             _settings = settings;

@@ -7,15 +7,14 @@ namespace GeoGenTwo.Core.Mvvm
     {
         #region Properties
 
-        protected IRegionManager RegionManager { get; private set; }
 
         #endregion
 
         #region Constructor
 
-        public RegionViewModelBase(IRegionManager regionManager)
+        public RegionViewModelBase()
         {
-            RegionManager = regionManager;
+            
         }
 
         #endregion

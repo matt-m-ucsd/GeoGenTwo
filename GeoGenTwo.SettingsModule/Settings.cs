@@ -9,8 +9,8 @@ namespace GeoGenTwo.SettingsModule
         #region Fields
 
         private int _numLines;
-        private SolidColorBrush _lineColor;
-        private SolidColorBrush _backgroundColor;
+        private Color _lineColor;
+        private Color _backgroundColor;
 
         #endregion
 
@@ -22,13 +22,13 @@ namespace GeoGenTwo.SettingsModule
             set { SetProperty(ref _numLines, value); }
         }
 
-        public SolidColorBrush LineColor
+        public Color LineColor
         {
             get { return _lineColor;  } 
             set { SetProperty(ref _lineColor, value); }
         }
 
-        public SolidColorBrush BackgroundColor
+        public Color BackgroundColor
         {
             get { return _backgroundColor; }
             set { SetProperty(ref _backgroundColor, value); }

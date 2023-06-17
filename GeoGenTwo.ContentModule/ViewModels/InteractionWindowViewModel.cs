@@ -14,11 +14,15 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         #endregion
 
+        #region Commands
+
         public DelegateCommand GeneratePatternCommand { get; private set; }
+
+        #endregion
 
         #region Constructor
 
-        public InteractionWindowViewModel(IRegionManager regionManager, IEventAggregator eventAggregator) : base(regionManager)
+        public InteractionWindowViewModel(IEventAggregator eventAggregator) : base()
         {
             _eventAggregator = eventAggregator;
 

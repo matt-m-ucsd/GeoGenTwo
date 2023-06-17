@@ -16,17 +16,15 @@
         <converters:IntegerToDoubleConverter x:Key="IntegerToDoubleConverter" />
     </UserControl.Resources>    
     <StackPanel Orientation="Vertical" Height="360" Width="200">
-        <StackPanel Orientation="Horizontal">
-            <Slider Width="100" 
-                    Margin="20,0,0,0"
-                    SmallChange="1" LargeChange="5"
-                    TickPlacement="Both" TickFrequency="5"
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Slider Width="95"
+                    TickPlacement="Both" TickFrequency="1"
                     Minimum="{Binding Source={x:Static settings:SettingsConstants.MIN_NUM_lINES}, 
                                       Converter={StaticResource IntegerToDoubleConverter}}"
                     Maximum="{Binding Source={x:Static settings:SettingsConstants.MAX_NUM_lINES}, 
                                       Converter={StaticResource IntegerToDoubleConverter}}"
                     Value="{Binding NumLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox VerticalContentAlignment="Center" Height="20" Width="40" Margin="10,0,0,0">
+            <TextBox VerticalContentAlignment="Center" Height="20" Width="20" Margin="10,0,0,0">
                 <TextBox.Text>
                     <Binding Path="NumLines" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -38,8 +36,10 @@
                 </TextBox.Text>
             </TextBox>
         </StackPanel>
-        <Button x:Name="SwitchSettingsModeButton" Margin="20,5,20,5" 
+        <Button x:Name="SwitchSettingsModeButton" Margin="0,5,0,5" 
+                HorizontalAlignment="Center"
                 Command="{Binding SwitchSettingsModeCommand}" 
-                Content="Advanced Settings" />
+                Content="Advanced Settings"
+                Width="125"/>
     </StackPanel>
 </UserControl>
