@@ -7,8 +7,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Linq;
 using GeoGenTwo.Core;
-using System;
-using System.Collections.Generic;
 
 namespace GeoGenTwo.SettingsModule.ViewModels
 {

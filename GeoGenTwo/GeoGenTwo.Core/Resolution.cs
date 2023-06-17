@@ -19,5 +19,10 @@
             }    
             return false;
         }
+
+        public override int GetHashCode()
+        {
+            return Width.GetHashCode() ^ Height.GetHashCode();
+        }
     }
 }
