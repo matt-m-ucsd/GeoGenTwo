@@ -36,9 +36,10 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         #region Constructor
 
-        public InteractionWindowViewModel(IEventAggregator eventAggregator) : base()
+        public InteractionWindowViewModel(IEventAggregator eventAggregator, ISettings settings) : base()
         {
             _eventAggregator = eventAggregator;
+            Settings = settings;
 
             GeneratePatternCommand = new DelegateCommand(GeneratePattern_Command);
             SaveToImageCommand = new DelegateCommand(SaveToImage_Command);

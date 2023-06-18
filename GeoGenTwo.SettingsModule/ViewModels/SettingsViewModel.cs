@@ -28,6 +28,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             get { return _numLines; }
             set { 
                 SetProperty(ref _numLines, value);
+                Settings.NumLines = _numLines;
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
@@ -50,12 +51,13 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         #region Constructor
 
         public SettingsViewModel(IEventAggregator eventAggregator, ISettings settings) 
-            : base()
         {
             _eventAggregator = eventAggregator;
             _settings = settings;
 
             SwitchSettingsModeCommand = new DelegateCommand(SwitchSettingsMode_Command);
+
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEvent);
         }
 
         #endregion
@@ -67,6 +69,11 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(true);
         }
 
+        private void OnSettingsChangedEvent(ISettings settings)
+        {
+            Settings = settings;
+        }
+
         #endregion
 
         #region Methods
@@ -74,6 +81,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         public override void Destroy()
         {
             base.Destroy();
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Unsubscribe(OnSettingsChangedEvent);
         }
 
         #endregion

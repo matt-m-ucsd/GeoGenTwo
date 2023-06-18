@@ -32,10 +32,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         public ISettings Settings
         {
             get { return _settings; }
-            set
-            {
-                SetProperty(ref _settings, value);
-            }
+            set { SetProperty(ref _settings, value); }
         }
 
         public SolidColorBrushItem LineBrush
@@ -44,6 +41,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             set
             {
                 SetProperty(ref _lineBrush, value);
+                Settings.LineBrush = _lineBrush.ColorBrush;
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
@@ -54,6 +52,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             set
             {
                 SetProperty(ref _backgroundBrush, value);
+                Settings.BackgroundBrush = _backgroundBrush.ColorBrush;
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
@@ -64,6 +63,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             set
             {
                 SetProperty(ref _portraitResolution, value);
+                Settings.PortraitResolution = _portraitResolution;
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
@@ -74,6 +74,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             set 
             { 
                 SetProperty(ref _landscapeResolution, value);
+                Settings.LandscapeResolution = _landscapeResolution;
                 _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
             }
         }
@@ -111,11 +112,13 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
             PopulateResolutionOptionsLists();
             SetDefaultResolutions();
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEvent);
         }
 
         public override void Destroy()
         {
             base.Destroy();
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Unsubscribe(OnSettingsChangedEvent);
         }
 
         private void PopulateColorOptionsList()
@@ -142,12 +145,12 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         {
             LandscapeResolutionOptions = new ObservableCollection<Resolution>
             {
-                new Resolution(1080, 1920)
+                new Resolution(1920, 1080)
             };
 
             PortraitResolutionOptions = new ObservableCollection<Resolution>
             {
-                new Resolution(1920, 1080)
+                new Resolution(1080, 1920)
             };
         }
         private void SetDefaultResolutions()
@@ -163,6 +166,11 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         private void SwitchToBaseSettingsMode_Command()
         {
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(false);
+        }
+
+        private void OnSettingsChangedEvent(ISettings settings)
+        {
+            Settings = settings;
         }
 
         #endregion

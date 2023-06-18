@@ -7,6 +7,12 @@ namespace GeoGenTwo.SettingsModule
         public SolidColorBrush ColorBrush { get; }
         public string ColorName { get; }
 
+        public SolidColorBrushItem(SolidColorBrush colorBrush, string colorName)
+        {
+            ColorBrush = colorBrush;
+            ColorName = colorName;
+        }   
+
         public SolidColorBrushItem(Color color, string colorName)
         {
             ColorBrush = new SolidColorBrush(color);

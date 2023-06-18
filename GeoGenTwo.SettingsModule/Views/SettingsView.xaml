@@ -9,13 +9,13 @@
     xmlns:settings="clr-namespace:GeoGenTwo.SettingsModule"
     xmlns:validation="clr-namespace:GeoGenTwo.SettingsModule.ValidationRules"
     mc:Ignorable="d" 
-    d:DesignHeight="360" d:DesignWidth="200"
+    d:DesignHeight="300" d:DesignWidth="200"
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <converters:IntegerToDoubleConverter x:Key="IntegerToDoubleConverter" />
     </UserControl.Resources>    
-    <StackPanel Orientation="Vertical" Height="360" Width="200">
+    <StackPanel Orientation="Vertical" Height="300" Width="200">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Slider Width="95"
                     TickPlacement="Both" TickFrequency="1"

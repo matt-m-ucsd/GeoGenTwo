@@ -37,9 +37,10 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         #region Constructor/Destructor
 
-        public CanvasViewModel(IEventAggregator eventAggregator) : base()
+        public CanvasViewModel(IEventAggregator eventAggregator, ISettings settings) : base()
         {
             Lines = new ObservableCollection<Line>();
+            Settings = settings;
 
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEventReceived);

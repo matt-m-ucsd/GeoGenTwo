@@ -4,18 +4,21 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:core="clr-namespace:GeoGenTwo.Core;assembly=GeoGenTwo.Core"
-        Title="{Binding Title}" Height="720" Width="1280" >
-    <StackPanel Orientation="Horizontal">
+        Title="{Binding Title}" 
+        Height="720" Width="1280"
+        Background="Gray"
+        Padding="80">
+    <StackPanel Orientation="Horizontal" Height="600" Width="1280">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Vertical">
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InteractionRegion}" Height="360" Width="200"/>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InteractionRegion}" Height="300" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SettingsRegion}" Height="360" Width="200"/>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SettingsRegion}" Height="300" Width="200"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" Height="720" Width="1080"/>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" Height="600" Width="1080"/>
         </StackPanel>
     </StackPanel>
 </Window>
