@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Linq;
 using GeoGenTwo.Core;
@@ -20,6 +21,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         private SolidColorBrushItem _backgroundBrush;
         private Resolution _portraitResolution;
         private Resolution _landscapeResolution;
+        private string _saveDirectoryFilePath;
 
         #endregion
 
@@ -79,6 +81,17 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             }
         }
 
+        public string SaveDirectoryFilePath
+        {
+            get { return _saveDirectoryFilePath; }
+            set 
+            { 
+                SetProperty(ref _saveDirectoryFilePath, value);
+                Settings.SaveDirectoryFilePath = _saveDirectoryFilePath;
+                _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
+            }
+        }
+
         public bool KeepAlive => true;
 
         #endregion
@@ -86,6 +99,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         #region Commands
 
         public DelegateCommand SwitchToBaseSettingsModeCommand { get; private set; }
+        public DelegateCommand ChooseSaveDirectoryCommand { get; private set; }
 
 
         #endregion
@@ -98,6 +112,9 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _settings = settings;
 
             SwitchToBaseSettingsModeCommand = new DelegateCommand(SwitchToBaseSettingsMode_Command);
+            ChooseSaveDirectoryCommand = new DelegateCommand(ChooseSaveDirectory_Command);
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEvent);
+
             Initialize();
         }
 
@@ -112,7 +129,6 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
             PopulateResolutionOptionsLists();
             SetDefaultResolutions();
-            _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEvent);
         }
 
         public override void Destroy()
@@ -153,6 +169,7 @@ namespace GeoGenTwo.SettingsModule.ViewModels
                 new Resolution(1080, 1920)
             };
         }
+
         private void SetDefaultResolutions()
         {
             PortraitResolution = PortraitResolutionOptions.FirstOrDefault(item => item.Equals(Settings.PortraitResolution));
@@ -166,6 +183,18 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         private void SwitchToBaseSettingsMode_Command()
         {
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(false);
+        }
+
+        private void ChooseSaveDirectory_Command()
+        {
+            var folderDialog = new FolderBrowserDialog();
+            folderDialog.SelectedPath = Settings.SaveDirectoryFilePath;
+
+            // Show the folder selection dialog
+            if (folderDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveDirectoryFilePath = folderDialog.SelectedPath;
+            }
         }
 
         private void OnSettingsChangedEvent(ISettings settings)

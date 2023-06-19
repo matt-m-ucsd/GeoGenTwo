@@ -5,7 +5,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:core="clr-namespace:GeoGenTwo.Core;assembly=GeoGenTwo.Core"
         Title="{Binding Title}" 
-        Height="720" Width="1280"
+        Height="720" Width="800"
         Background="Gray"
         Padding="80">
     <StackPanel Orientation="Horizontal" Height="600" Width="1280">
@@ -18,7 +18,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" Height="600" Width="1080"/>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" Height="720" Width="600"/>
         </StackPanel>
     </StackPanel>
 </Window>

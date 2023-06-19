@@ -14,6 +14,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
         private ObservableCollection<Line> _lines;
         private IEventAggregator _eventAggregator;
         private ISettings _settings;
+        private Brush _canvasBrush;
 
         #endregion
 
@@ -31,7 +32,11 @@ namespace GeoGenTwo.ContentModule.ViewModels
             set { SetProperty(ref _lines, value); }
         }
 
-        public Brush BackGroundColor => Settings.BackgroundBrush;
+        public Brush CanvasBrush
+        {
+            get { return _canvasBrush; }
+            set { SetProperty(ref _canvasBrush, value); }
+        }
 
         #endregion
 
@@ -60,6 +65,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
         private void OnSettingsChangedEventReceived(ISettings settings)
         {
             Settings = settings;
+            CanvasBrush = settings.BackgroundBrush;
         }
 
         private void OnGeneratePatternEventReceived()

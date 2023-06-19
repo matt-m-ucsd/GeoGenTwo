@@ -1,6 +1,7 @@
 ﻿using GeoGenTwo.Core;
 using GeoGenTwo.Core.Interfaces;
 using Prism.Mvvm;
+using System.IO;
 using System.Windows.Media;
 
 namespace GeoGenTwo.SettingsModule
@@ -14,6 +15,7 @@ namespace GeoGenTwo.SettingsModule
         private Brush _backgroundColor;
         private Resolution _portraitResolution;
         private Resolution _landscapeResolution;
+        private string _saveDirectoryFilePath;
 
         #endregion
 
@@ -49,6 +51,12 @@ namespace GeoGenTwo.SettingsModule
             set { SetProperty(ref _landscapeResolution, value); }
         }
 
+        public string SaveDirectoryFilePath
+        {
+            get { return _saveDirectoryFilePath; }
+            set { SetProperty(ref _saveDirectoryFilePath, value); }
+        }
+
         #endregion
 
         #region Constructors
@@ -60,6 +68,9 @@ namespace GeoGenTwo.SettingsModule
             BackgroundBrush = SettingsConstants.DEFAULT_BACKGROUND_COLOR;
             PortraitResolution = new Resolution(1080, 1920);
             LandscapeResolution = new Resolution(1920, 1080);
+            string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string defaultFolderPath = Path.Combine(solutionDirectory, "OutputImages");
+            SaveDirectoryFilePath = defaultFolderPath;
         }
 
         #endregion

@@ -41,7 +41,9 @@
         </ComboBox>
 
         <Button Content="Choose Save Directory"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Center"
+                Command="{Binding ChooseSaveDirectoryCommand}"/>
+        
         <Button Content="Exit Advanced Settings"
                 HorizontalAlignment="Center"
                 Command="{Binding SwitchToBaseSettingsModeCommand}" 

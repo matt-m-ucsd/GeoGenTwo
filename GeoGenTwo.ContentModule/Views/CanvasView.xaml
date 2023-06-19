@@ -6,9 +6,9 @@
              mc:Ignorable="d" 
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True" >
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Width="400" Height="400">
-            <Canvas Background="{Binding }" Width="400" Height="400">
+    <Grid VerticalAlignment="Top">
+        <Border BorderBrush="Black" BorderThickness="1" Height="600" Width="600">
+            <Canvas Background="{Binding CanvasBrush, UpdateSourceTrigger=PropertyChanged}" Height="600" Width="600">
                 <ItemsControl ItemsSource="{Binding Lines}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

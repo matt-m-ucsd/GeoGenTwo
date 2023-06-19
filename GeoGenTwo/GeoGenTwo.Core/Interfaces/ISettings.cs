@@ -9,5 +9,7 @@ namespace GeoGenTwo.Core.Interfaces
         Brush BackgroundBrush { get; set; }
         Resolution LandscapeResolution { get; set; }
         Resolution PortraitResolution { get; set; }
+
+        string SaveDirectoryFilePath { get; set; }
     }
 }
