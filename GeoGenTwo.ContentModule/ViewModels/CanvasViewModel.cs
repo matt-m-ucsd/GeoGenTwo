@@ -145,7 +145,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
             // Generate the mirrored lines in the other three quadrants
             Line mirroredLineTopRight = new Line
             {
-                X1 = canvasWidth - inputLine.X1,
+                X1 = canvasWidth - 1,
                 Y1 = inputLine.Y1,
                 X2 = canvasWidth - inputLine.X2,
                 Y2 = inputLine.Y2,
@@ -165,7 +165,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
             Line mirroredLineBottomRight = new Line
             {
-                X1 = canvasWidth - inputLine.X1,
+                X1 = canvasWidth - 1,
                 Y1 = canvasHeight - inputLine.Y1,
                 X2 = canvasWidth - inputLine.X2,
                 Y2 = canvasHeight - inputLine.Y2,
