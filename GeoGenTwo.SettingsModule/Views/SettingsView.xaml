@@ -1,13 +1,45 @@
-﻿ <UserControl x:Class="GeoGenTwo.SettingsModule.Views.SettingsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
-             d:DesignHeight="360" d:DesignWidth="200"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
-    <StackPanel Orientation="Vertical" Height="360" Width="200">
-        <Button x:Name="SwitchSettingsModeButton" Margin="20,5,20,5" Command="{Binding SwitchSettingsModeCommand}">Advanced Settings</Button>
+﻿<UserControl 
+    x:Class="GeoGenTwo.SettingsModule.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converters="clr-namespace:GeoGenTwo.SettingsModule.Converters"
+    xmlns:settings="clr-namespace:GeoGenTwo.SettingsModule"
+    xmlns:validation="clr-namespace:GeoGenTwo.SettingsModule.ValidationRules"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="200"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <converters:IntegerToDoubleConverter x:Key="IntegerToDoubleConverter" />
+    </UserControl.Resources>    
+    <StackPanel Orientation="Vertical" Height="300" Width="200">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Slider Width="95"
+                    TickPlacement="Both" TickFrequency="1"
+                    Minimum="{Binding Source={x:Static settings:SettingsConstants.MIN_NUM_lINES}, 
+                                      Converter={StaticResource IntegerToDoubleConverter}}"
+                    Maximum="{Binding Source={x:Static settings:SettingsConstants.MAX_NUM_lINES}, 
+                                      Converter={StaticResource IntegerToDoubleConverter}}"
+                    Value="{Binding NumLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox VerticalContentAlignment="Center" Height="20" Width="20" Margin="10,0,0,0">
+                <TextBox.Text>
+                    <Binding Path="NumLines" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:NumericRangeValidationRule 
+                                Min="{x:Static settings:SettingsConstants.MIN_NUM_lINES}" 
+                                Max="{x:Static settings:SettingsConstants.MAX_NUM_lINES}" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+        <Button x:Name="SwitchSettingsModeButton" Margin="0,5,0,5" 
+                HorizontalAlignment="Center"
+                Command="{Binding SwitchSettingsModeCommand}" 
+                Content="Advanced Settings"
+                Width="125"/>
     </StackPanel>
 </UserControl>

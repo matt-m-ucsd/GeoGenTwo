@@ -4,10 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True" >
-    <Grid Height="720" Width="1080">
-        <Label Margin="28,72,28,72" Content="TEST CANVAS VIEW" BorderBrush="Black" BorderThickness="5"/>
+    <Grid VerticalAlignment="Top">
+        <Border BorderBrush="Black" BorderThickness="1" Height="600" Width="500">
+            <Canvas Background="{Binding CanvasBrush, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl ItemsSource="{Binding Lines}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Line X1="{Binding X1}" Y1="{Binding Y1}"
+                                  X2="{Binding X2}" Y2="{Binding Y2}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using GeoGenTwo.ContentModule;
+using GeoGenTwo.Core.Interfaces;
 using GeoGenTwo.SettingsModule;
 using GeoGenTwo.SettingsModule.ViewModels;
 using GeoGenTwo.Views;
@@ -20,7 +21,15 @@ namespace GeoGenTwo
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // containerRegistry.RegisterSingleton<Interface, Implementation>();
+            containerRegistry.RegisterSingleton<ISettings, Settings>();
+        }
+
+        protected override void InitializeShell(Window shell)
+        {
+            base.InitializeShell(shell);
+
+            // Resolve the shared settings instance
+            var settings = Container.Resolve<ISettings>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

@@ -5,6 +5,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using System;
+using System.Windows.Input;
 
 namespace GeoGenTwo.SettingsModule.ViewModels
 {
@@ -14,14 +15,22 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         private IEventAggregator _eventAggregator;
         private ISettings _settings;
+        private int _numLines = SettingsConstants.DEFAULT_NUM_LINES;
 
         #endregion
 
         #region Properties
 
-        public bool KeepAlive
+        public bool KeepAlive => true;
+
+        public int NumLines
         {
-            get { return true; }
+            get { return _numLines; }
+            set { 
+                SetProperty(ref _numLines, value);
+                Settings.NumLines = _numLines;
+                _eventAggregator.GetEvent<SettingsChangedEvent>().Publish(Settings);
+            }
         }
 
         public ISettings Settings
@@ -30,24 +39,28 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             set { SetProperty(ref _settings, value); }
         }
 
+
+        #endregion
+
+        #region Commands
+
         public DelegateCommand SwitchSettingsModeCommand { get; private set; }
 
         #endregion
 
-        #region Constructor(s)
+        #region Constructor
 
-        public SettingsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, ISettings settings) 
-            : base(regionManager)
+        public SettingsViewModel(IEventAggregator eventAggregator, ISettings settings) 
         {
             _eventAggregator = eventAggregator;
             _settings = settings;
 
             SwitchSettingsModeCommand = new DelegateCommand(SwitchSettingsMode_Command);
+
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEvent);
         }
 
         #endregion
-
-        #region Methods
 
         #region Callbacks
 
@@ -56,7 +69,20 @@ namespace GeoGenTwo.SettingsModule.ViewModels
             _eventAggregator.GetEvent<SettingsModeChangedEvent>().Publish(true);
         }
 
+        private void OnSettingsChangedEvent(ISettings settings)
+        {
+            Settings = settings;
+        }
+
         #endregion
+
+        #region Methods
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            _eventAggregator.GetEvent<SettingsChangedEvent>().Unsubscribe(OnSettingsChangedEvent);
+        }
 
         #endregion
     }
