@@ -66,8 +66,10 @@ namespace GeoGenTwo.SettingsModule
             NumLines = SettingsConstants.DEFAULT_NUM_LINES;
             LineBrush = SettingsConstants.DEFAULT_LINE_COLOR;
             BackgroundBrush = SettingsConstants.DEFAULT_BACKGROUND_COLOR;
-            PortraitResolution = new Resolution(1080, 1920);
-            LandscapeResolution = new Resolution(1920, 1080);
+            int canvWidth = (int) GeoGenTwoConstants.DEFAULT_CANVAS_WIDTH;
+            int canvHeight = (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT;
+            PortraitResolution = new Resolution(canvWidth, canvHeight);
+            LandscapeResolution = new Resolution(canvHeight, canvWidth);
             string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             string defaultFolderPath = Path.Combine(solutionDirectory, "OutputImages");
             SaveDirectoryFilePath = defaultFolderPath;

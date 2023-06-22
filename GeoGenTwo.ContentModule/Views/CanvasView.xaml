@@ -3,17 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:core="clr-namespace:GeoGenTwo.Core;assembly=GeoGenTwo.Core"
              mc:Ignorable="d" 
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid VerticalAlignment="Top">
-        <Border BorderBrush="Black" BorderThickness="1" Height="600" Width="500">
+        <Border BorderBrush="Black" BorderThickness="1" 
+                Height="{x:Static core:GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT}" 
+                Width="{x:Static core:GeoGenTwoConstants.DEFAULT_CANVAS_WIDTH}">
             <Canvas Background="{Binding CanvasBrush, UpdateSourceTrigger=PropertyChanged}">
-                <ItemsControl ItemsSource="{Binding Lines}">
+                <ItemsControl ItemsSource="{Binding Lines, UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Canvas.Left" Value="{Binding X1}" />
+                            <Setter Property="Canvas.Top" Value="{Binding Y1}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Line X1="{Binding X1}" Y1="{Binding Y1}"
-                                  X2="{Binding X2}" Y2="{Binding Y2}" />
+                                  X2="{Binding X2}" Y2="{Binding Y2}"
+                                  Fill="{Binding Fill}" Stroke="{Binding Stroke}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
