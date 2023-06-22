@@ -13,7 +13,6 @@ namespace GeoGenTwo.MainModule.ViewModels
     {
         #region Fields/Members/Constants
 
-        private string _title = "Geo Gen (5 years later ver.)";
         private IRegionManager _regionManager;
         private IContainerExtension _container;
         private IEventAggregator _eventAggregator;
@@ -30,12 +29,6 @@ namespace GeoGenTwo.MainModule.ViewModels
 
         #region Properties
 
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
         #endregion
 
         #region Constructor(s)
@@ -45,7 +38,6 @@ namespace GeoGenTwo.MainModule.ViewModels
             _container = container;
             _regionManager = regionManager;
             _eventAggregator = eventAggregator;
-
             Initialize();
         }
 

@@ -43,7 +43,16 @@
         <Button Content="Choose Save Directory"
                 HorizontalAlignment="Center"
                 Command="{Binding ChooseSaveDirectoryCommand}"/>
-        
+        <TextBlock Text="Current Save Directory: " 
+                   FontSize="10"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Margin="40,0,0,0"/>
+        <TextBlock Text="{Binding SaveDirectoryFilePath}" 
+                   FontSize="8" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Margin="40,0,10,0"/>
         <Button Content="Exit Advanced Settings"
                 HorizontalAlignment="Center"
                 Command="{Binding SwitchToBaseSettingsModeCommand}" 
