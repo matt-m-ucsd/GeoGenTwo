@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using static System.Windows.Forms.AxHost;
 
 namespace GeoGenTwo.ContentModule.ViewModels
 {
@@ -113,8 +114,12 @@ namespace GeoGenTwo.ContentModule.ViewModels
                     if (FoundIntersection(line, existingLine, out double x, out double y))
                     {
                         // Update the endpoint of the current line to the intersection point
-                        line.X2 = x;
-                        line.Y2 = y;
+                        // IFF new line is shorter than previous
+                        if (LineLength(line.X1, line.X2, line.Y1, line.Y2) > LineLength(line.X1, x, line.Y1, y))
+                        {
+                            line.X2 = x;
+                            line.Y2 = y;
+                        }
                     }
                 }
 
@@ -181,6 +186,10 @@ namespace GeoGenTwo.ContentModule.ViewModels
             return mirroredLines;
         }
 
+        private double LineLength(double x1, double x2, double y1, double y2)
+        {
+            return Math.Sqrt(((y2 - y1) * (y2 - y1)) + ((x2 - x1) * (x2 - x1)));
+        }
 
         private bool FoundIntersection(Line line1, Line line2, out double x, out double y)
         {
