@@ -102,7 +102,8 @@ namespace GeoGenTwo.ContentModule.ViewModels
                     X2 = GeoGenTwoConstants.DEFAULT_CANVAS_WIDTH / 2, // base X2 coordinate to reach middle of canvas
                     Y1 = random.Next(0, (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT / 2), //  Randomly generate Y1 coordinate
                     Y2 = random.Next(0, (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT / 2), // Randomly generate Y2 coordinate
-                    Stroke = Settings.LineBrush
+                    Stroke = Settings.LineBrush,
+                    StrokeThickness = 2
                 };
                 // Check for intersection with existing lines
                 foreach (var existingLine in Lines)
@@ -150,7 +151,8 @@ namespace GeoGenTwo.ContentModule.ViewModels
                 X2 = canvasWidth - inputLine.X2,
                 Y2 = inputLine.Y2,
                 Fill = Settings.LineBrush,
-                Stroke = Settings.LineBrush
+                Stroke = Settings.LineBrush,
+                StrokeThickness = 2
             };
 
             Line mirroredLineBottomLeft = new Line
@@ -160,7 +162,8 @@ namespace GeoGenTwo.ContentModule.ViewModels
                 X2 = inputLine.X2,
                 Y2 = canvasHeight - inputLine.Y2,
                 Fill = Settings.LineBrush,
-                Stroke = Settings.LineBrush
+                Stroke = Settings.LineBrush,
+                StrokeThickness = 2
             };
 
             Line mirroredLineBottomRight = new Line
@@ -170,7 +173,8 @@ namespace GeoGenTwo.ContentModule.ViewModels
                 X2 = canvasWidth - inputLine.X2,
                 Y2 = canvasHeight - inputLine.Y2,
                 Fill = Settings.LineBrush,
-                Stroke = Settings.LineBrush
+                Stroke = Settings.LineBrush,
+                StrokeThickness = 2
             };
 
             // Add the mirrored lines to the list
