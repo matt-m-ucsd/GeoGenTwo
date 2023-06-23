@@ -1,4 +1,5 @@
-﻿using GeoGenTwo.Core.Interfaces;
+﻿using GeoGenTwo.Core;
+using GeoGenTwo.Core.Interfaces;
 using GeoGenTwo.Core.Mvvm;
 using Prism.Events;
 using System;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using static System.Windows.Forms.AxHost;
 
 namespace GeoGenTwo.ContentModule.ViewModels
 {
@@ -81,40 +81,35 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         private void OnGeneratePatternEventReceived()
         {
-            GenerateLines();
+            GenerateInitialLines();
+            CreateAndAddMirrorLines();
         }
 
         #endregion
 
         #region Methods
 
-        private void GenerateLines()
+        private void GenerateInitialLines()
         {
             Random random = new Random();
             int numLines = Settings.NumLines;
-
             Lines.Clear(); // Clear the existing lines
-
             for (int i = 0; i < numLines; i++)
             {
                 Line line = new Line()
                 {
-                    X1 = 0, // Randomly generate X1 coordinate
-                    X2 = Settings.PortraitResolution.Width / 2, // base X2 coordinate
-                    Y2 = random.Next(0, Settings.PortraitResolution.Height / 2), // Randomly generate Y2 coordinate
-                    Y1 = random.Next(0, Settings.PortraitResolution.Height / 2), // base Y1 coordinate
-
-                    Fill = Settings.LineBrush, // Set line color
+                    X1 = 0, // base x-coordinate to align with edge of canvas
+                    X2 = GeoGenTwoConstants.DEFAULT_CANVAS_WIDTH / 2, // base X2 coordinate to reach middle of canvas
+                    Y1 = random.Next(0, (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT / 2), //  Randomly generate Y1 coordinate
+                    Y2 = random.Next(0, (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT / 2), // Randomly generate Y2 coordinate
                     Stroke = Settings.LineBrush
                 };
-
                 // Check for intersection with existing lines
                 foreach (var existingLine in Lines)
                 {
                     if (FoundIntersection(line, existingLine, out double x, out double y))
                     {
-                        // Update the endpoint of the current line to the intersection point
-                        // IFF new line is shorter than previous
+                        // Update the endpoint of the current line to the intersection point IFF new line is shorter than unmodified
                         if (LineLength(line.X1, line.X2, line.Y1, line.Y2) > LineLength(line.X1, x, line.Y1, y))
                         {
                             line.X2 = x;
@@ -122,12 +117,13 @@ namespace GeoGenTwo.ContentModule.ViewModels
                         }
                     }
                 }
-
-                Lines.Add(line); // Add the line to the collection
+                Lines.Add(line); // Add the line to the collection                                
             }
+        }
 
+        public void CreateAndAddMirrorLines()
+        {
             List<Line> allMirroredLines = new List<Line>();
-
             foreach (Line line in Lines)
             {
                 List<Line> mirroredLines = GenerateMirroredLines(line, Settings.PortraitResolution.Width, Settings.PortraitResolution.Height);
@@ -136,7 +132,6 @@ namespace GeoGenTwo.ContentModule.ViewModels
                     allMirroredLines.Add(mirrorLine);
                 }
             }
-
             foreach (Line line in allMirroredLines)
             {
                 Lines.Add(line);
@@ -219,9 +214,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
                 return true;
             }
 
-            x = -1;
-            y = -1;
-
+            x = y = int.MinValue;
             return false;
         }
 
