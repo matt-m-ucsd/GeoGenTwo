@@ -2,7 +2,7 @@
 using GeoGenTwo.Core.Interfaces;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Regions;
+using GeoGenTwo.Core;
 
 namespace GeoGenTwo.ContentModule.ViewModels
 {
@@ -11,7 +11,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
         #region Commands
 
         public DelegateCommand GeneratePatternCommand { get; private set; }
-        public DelegateCommand SaveToImageCommand { get; private set; }
+        public DelegateCommand<OutputOrientationType?> SaveToImageCommand { get; private set; }
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
             Settings = settings;
 
             GeneratePatternCommand = new DelegateCommand(GeneratePattern_Command);
-            SaveToImageCommand = new DelegateCommand(SaveToImage_Command);
+            SaveToImageCommand = new DelegateCommand<OutputOrientationType?>(SaveToImage_Command);
 
             _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEventReceived);
         }
@@ -65,9 +65,19 @@ namespace GeoGenTwo.ContentModule.ViewModels
             _eventAggregator.GetEvent<GeneratePatternEvent>().Publish();
         }
 
-        private void SaveToImage_Command(/*resolution type enum?*/)
+        private void SaveToImage_Command(OutputOrientationType? orientation)
         {
+            if (!orientation.HasValue) { return; }
 
+            switch (orientation)
+            {
+                case OutputOrientationType.Portrait:
+                    SaveImage(Settings.PortraitResolution);
+                    break;
+                case OutputOrientationType.Landscape:
+                    SaveImage(Settings.LandscapeResolution);
+                    break;
+            }
         }
 
         private void OnSettingsChangedEventReceived(ISettings settings)
@@ -76,6 +86,11 @@ namespace GeoGenTwo.ContentModule.ViewModels
         }
 
         #endregion
+
+        private void SaveImage(Resolution resolution)
+        {
+            
+        }
 
         #endregion
     }
