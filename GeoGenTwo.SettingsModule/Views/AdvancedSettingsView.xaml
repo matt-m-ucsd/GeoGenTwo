@@ -9,9 +9,12 @@
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <StackPanel Orientation="Vertical" Height="300" Width="200" HorizontalAlignment="Center">
         <TextBlock Text="Line Color:" FontSize="16" FontWeight="SemiBold" 
-                   HorizontalAlignment="Center" Margin="-45,0,0,5" />
+                   HorizontalAlignment="Center" Margin="-45,0,0,5"
+                   Foreground="#c5c5c5" />
         <ComboBox ItemsSource="{Binding BrushColorOptions}"
                   SelectedItem="{Binding LineBrush, Mode=TwoWay}"
+                  Background="#373737"
+                  Foreground="#c5c5c5"
                   Width="125"
                   Margin="0,0,0,10" HorizontalAlignment="Center" >
             <ComboBox.ItemTemplate>
@@ -25,9 +28,12 @@
         </ComboBox>
 
         <TextBlock Text="Background Color:" FontSize="16" FontWeight="SemiBold" 
-                   HorizontalAlignment="Center" Margin="10,0,0,5" />
+                   HorizontalAlignment="Center" Margin="10,0,0,5" 
+                   Foreground="#c5c5c5"/>
         <ComboBox ItemsSource="{Binding BrushColorOptions}"
                   SelectedItem="{Binding BackgroundBrush, Mode=TwoWay}"
+                  Background="#373737"
+                  Foreground="#c5c5c5"
                   Width="125"
                   Margin="0,0,0,10" HorizontalAlignment="Center" >
             <ComboBox.ItemTemplate>
@@ -42,19 +48,25 @@
 
         <Button Content="Choose Save Directory"
                 HorizontalAlignment="Center"
+                Background="#373737"
+                Foreground="#c5c5c5"
                 Command="{Binding ChooseSaveDirectoryCommand}"/>
         <TextBlock Text="Current Save Directory: " 
                    FontSize="10"
+                   Foreground="#c5c5c5"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center" HorizontalAlignment="Left"
                    Margin="40,0,0,0"/>
         <TextBlock Text="{Binding SaveDirectoryFilePath}" 
                    FontSize="8" 
+                   Foreground="#c5c5c5"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center" HorizontalAlignment="Left"
                    Margin="40,0,10,0"/>
         <Button Content="Exit Advanced Settings"
                 HorizontalAlignment="Center"
+                Background="#373737"
+                Foreground="#c5c5c5"
                 Command="{Binding SwitchToBaseSettingsModeCommand}" 
                 Margin="0,10,0,0"/>
     </StackPanel>

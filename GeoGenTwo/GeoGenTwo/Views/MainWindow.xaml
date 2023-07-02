@@ -6,7 +6,7 @@
         xmlns:core="clr-namespace:GeoGenTwo.Core;assembly=GeoGenTwo.Core"
         Title="Geo Gen (5 years later ver.)" 
         Height="750" Width="620"
-        Background="Gray"
+        Background="#0b0b0b"
         Padding="80"
         ResizeMode="NoResize"
         xmlns:ui="http://schemas.modernwpf.com/2019"
