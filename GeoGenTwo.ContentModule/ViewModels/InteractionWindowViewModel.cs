@@ -2,7 +2,8 @@
 using GeoGenTwo.Core.Interfaces;
 using Prism.Commands;
 using Prism.Events;
-using GeoGenTwo.Core;
+using System.Collections.Generic;
+using System.Windows.Shapes;
 
 namespace GeoGenTwo.ContentModule.ViewModels
 {
@@ -30,9 +31,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
             set { SetProperty(ref _settings, value); }
         }
 
-        #endregion
-
-       
+        #endregion           
 
         #region Constructor
 
@@ -45,11 +44,12 @@ namespace GeoGenTwo.ContentModule.ViewModels
             SaveToImageCommand = new DelegateCommand<OutputOrientationType?>(SaveToImage_Command);
 
             _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEventReceived);
+            _eventAggregator.GetEvent<ReturnLinesEvent>().Subscribe(OnReturnLinesEventReceived);
         }
 
         #endregion
 
-        #region Methods
+        #region Overrides
 
         public override void Destroy()
         {
@@ -57,11 +57,12 @@ namespace GeoGenTwo.ContentModule.ViewModels
             _eventAggregator.GetEvent<SettingsChangedEvent>().Unsubscribe(OnSettingsChangedEventReceived);
         }
 
+        #endregion
+
         #region Callbacks
 
         private void GeneratePattern_Command()
         {
-            // publish event for CVM
             _eventAggregator.GetEvent<GeneratePatternEvent>().Publish();
         }
 
@@ -72,10 +73,10 @@ namespace GeoGenTwo.ContentModule.ViewModels
             switch (orientation)
             {
                 case OutputOrientationType.Portrait:
-                    SaveImage(Settings.PortraitResolution);
+                    _eventAggregator.GetEvent<RequestLinesEvent>().Publish(OutputOrientationType.Portrait);
                     break;
                 case OutputOrientationType.Landscape:
-                    SaveImage(Settings.LandscapeResolution);
+                    _eventAggregator.GetEvent<RequestLinesEvent>().Publish(OutputOrientationType.Landscape);
                     break;
             }
         }
@@ -85,11 +86,9 @@ namespace GeoGenTwo.ContentModule.ViewModels
             Settings = settings;
         }
 
-        #endregion
-
-        private void SaveImage(Resolution resolution)
+        private void OnReturnLinesEventReceived(List<Line> lines)
         {
-            
+            // TODO: save image logic
         }
 
         #endregion

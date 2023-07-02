@@ -61,6 +61,7 @@ namespace GeoGenTwo.ContentModule.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<SettingsChangedEvent>().Subscribe(OnSettingsChangedEventReceived);
             _eventAggregator.GetEvent<GeneratePatternEvent>().Subscribe(OnGeneratePatternEventReceived);
+            _eventAggregator.GetEvent<RequestLinesEvent>().Subscribe(OnRequestLinesEventReceived);
         }
 
         public override void Destroy()
@@ -83,6 +84,19 @@ namespace GeoGenTwo.ContentModule.ViewModels
         {
             GenerateInitialLines();
             CreateAndAddMirrorLines();
+        }
+
+        private void OnRequestLinesEventReceived(OutputOrientationType orientation)
+        {
+            List<Line> linePayload = new List<Line>(Lines);
+
+            // process Lines if needed
+            if (orientation is OutputOrientationType.Landscape)
+            {
+                // rotate lines 90 degrees
+            }
+
+            _eventAggregator.GetEvent<ReturnLinesEvent>().Publish(linePayload);
         }
 
         #endregion

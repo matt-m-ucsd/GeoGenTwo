@@ -9,8 +9,6 @@ namespace GeoGenTwo.SettingsModule
         public static readonly Brush DEFAULT_BACKGROUND_COLOR = Brushes.White;
 
         public static readonly int MIN_NUM_lINES = 1;
-        public static readonly int MAX_NUM_lINES = 10;
-
-
+        public static readonly int MAX_NUM_lINES = 15;
     }
 }
