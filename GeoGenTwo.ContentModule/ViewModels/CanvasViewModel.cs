@@ -90,10 +90,15 @@ namespace GeoGenTwo.ContentModule.ViewModels
         {
             List<Line> linePayload = new List<Line>();
 
-            // process Lines if needed
             if (orientation is OutputOrientationType.Landscape)
             {
-                // rotate lines
+                // process Lines if needed
+                foreach (Line line in Lines)
+                {
+                    Line rotatedLine = RotateLine90Degrees(line);
+                    linePayload.Add(rotatedLine);
+                }
+
             }
             else
             {
@@ -251,28 +256,12 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         private Line RotateLine90Degrees(Line line)
         {
-            // calculate the midpoint of the line
-            double midX = (line.X1 + line.X2) / 2;
-            double midY = (line.Y1 + line.Y2) / 2;
-
-            // translate the line
-            double startX = line.X1 - midX;
-            double startY = line.Y1 - midY;
-            double endX = line.X2 - midX;
-            double endY = line.Y2 - midY;
-
-            // rotate the translated line 90 degrees clockwise
-            double rotatedStartX = -startY;
-            double rotatedStartY = endX;
-            double rotatedEndX = -endY;
-            double rotatedEndY = startX;
-
             Line rotatedLine = new Line()
             {
-                X1 = rotatedStartX,
-                X2 = rotatedEndX,
-                Y1 = rotatedStartY,
-                Y2 = rotatedEndY,
+                X1 = line.Y1,
+                Y1 = line.X1,
+                X2 = line.Y2,
+                Y2 = line.X2,
                 Stroke = line.Stroke,
                 StrokeThickness = line.StrokeThickness
             };
