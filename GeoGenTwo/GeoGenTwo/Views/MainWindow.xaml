@@ -8,7 +8,9 @@
         Height="750" Width="620"
         Background="Gray"
         Padding="80"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True">
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Vertical">

@@ -143,11 +143,19 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         {
             BrushColorOptions = new ObservableCollection<SolidColorBrushItem>
             {
-                new SolidColorBrushItem(Colors.Red, "Red"),
-                new SolidColorBrushItem(Colors.Green, "Green"),
-                new SolidColorBrushItem(Colors.Blue, "Blue"),
+                new SolidColorBrushItem(Colors.White, "White"),
+                new SolidColorBrushItem(Colors.LightGray, "Light Gray"),
+                new SolidColorBrushItem(Colors.Gray, "Gray"),
                 new SolidColorBrushItem(Colors.Black, "Black"),
-                new SolidColorBrushItem(Colors.White, "White")
+                new SolidColorBrushItem(Colors.Red, "Red"),
+                new SolidColorBrushItem(Colors.DarkRed, "Dark Red"),
+                new SolidColorBrushItem(Colors.PaleVioletRed, "Pale Violet Red"),
+                new SolidColorBrushItem(Colors.Violet, "Violet"),
+                new SolidColorBrushItem(Colors.DarkViolet, "Dark Violet"),
+                new SolidColorBrushItem(Colors.Cyan, "Cyan"),
+                new SolidColorBrushItem(Colors.PaleGreen, "Pale Green"),
+                new SolidColorBrushItem(Colors.SpringGreen, "Spring Green"),
+                new SolidColorBrushItem(Colors.Fuchsia, "Fuchsia")
             };
         }
 

@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:converters="clr-namespace:GeoGenTwo.SettingsModule.Converters"
     xmlns:settings="clr-namespace:GeoGenTwo.SettingsModule"
     xmlns:validation="clr-namespace:GeoGenTwo.SettingsModule.ValidationRules"
@@ -40,6 +39,6 @@
                 HorizontalAlignment="Center"
                 Command="{Binding SwitchSettingsModeCommand}" 
                 Content="Advanced Settings"
-                Width="125"/>
+                Width="140"/>
     </StackPanel>
 </UserControl>
