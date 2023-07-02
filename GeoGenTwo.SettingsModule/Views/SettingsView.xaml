@@ -23,7 +23,11 @@
                     Maximum="{Binding Source={x:Static settings:SettingsConstants.MAX_NUM_lINES}, 
                                       Converter={StaticResource IntegerToDoubleConverter}}"
                     Value="{Binding NumLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox VerticalContentAlignment="Center" Height="20" Width="20" Margin="10,0,0,0">
+            <TextBox VerticalContentAlignment="Center" 
+                     Height="20" Width="20" Margin="10,0,0,0" 
+                     TextChanged="TextBox_TextChanged" 
+                     Background="#373737"
+                     Foreground="#c5c5c5">
                 <TextBox.Text>
                     <Binding Path="NumLines" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -37,8 +41,10 @@
         </StackPanel>
         <Button x:Name="SwitchSettingsModeButton" Margin="0,5,0,5" 
                 HorizontalAlignment="Center"
-                Command="{Binding SwitchSettingsModeCommand}" 
+                Background="#373737"
+                Foreground="#c5c5c5"
                 Content="Advanced Settings"
-                Width="140"/>
+                Width="140"
+                Command="{Binding SwitchSettingsModeCommand}" />
     </StackPanel>
 </UserControl>
