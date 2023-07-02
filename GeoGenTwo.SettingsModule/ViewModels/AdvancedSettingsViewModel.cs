@@ -124,6 +124,8 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         private void Initialize()
         {
+            _saveDirectoryFilePath = Settings.SaveDirectoryFilePath;
+
             PopulateColorOptionsList();
             SetDefaultColors();
 
@@ -161,11 +163,13 @@ namespace GeoGenTwo.SettingsModule.ViewModels
         {
             LandscapeResolutionOptions = new ObservableCollection<Resolution>
             {
+                new Resolution((int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT, (int) GeoGenTwoConstants.DEFAULT_CANVAS_WIDTH),
                 new Resolution(1920, 1080)
             };
 
             PortraitResolutionOptions = new ObservableCollection<Resolution>
             {
+                new Resolution((int) GeoGenTwoConstants.DEFAULT_CANVAS_WIDTH, (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT),
                 new Resolution(1080, 1920)
             };
         }
