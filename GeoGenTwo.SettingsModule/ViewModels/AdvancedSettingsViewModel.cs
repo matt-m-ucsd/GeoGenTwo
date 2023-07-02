@@ -124,6 +124,8 @@ namespace GeoGenTwo.SettingsModule.ViewModels
 
         private void Initialize()
         {
+            _saveDirectoryFilePath = Settings.SaveDirectoryFilePath;
+
             PopulateColorOptionsList();
             SetDefaultColors();
 

@@ -70,8 +70,8 @@ namespace GeoGenTwo.SettingsModule
             int canvHeight = (int) GeoGenTwoConstants.DEFAULT_CANVAS_HEIGHT;
             PortraitResolution = new Resolution(canvWidth, canvHeight);
             LandscapeResolution = new Resolution(canvHeight, canvWidth);
-            string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            string defaultFolderPath = Path.Combine(solutionDirectory, "OutputImages");
+            string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.FullName;
+            string defaultFolderPath = Path.Combine(solutionDirectory, "[OutputImages]");
             SaveDirectoryFilePath = defaultFolderPath;
         }
 
