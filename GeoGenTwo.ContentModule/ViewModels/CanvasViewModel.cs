@@ -88,15 +88,28 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
         private void OnRequestLinesEventReceived(OutputOrientationType orientation)
         {
-            List<Line> linePayload = new List<Line>(Lines);
+            List<Line> linePayload = new List<Line>();
 
             // process Lines if needed
             if (orientation is OutputOrientationType.Landscape)
             {
-                // rotate lines 90 degrees
+                // rotate lines
+            }
+            else
+            {
+                foreach (Line line in Lines)
+                {
+                    linePayload.Add(line);
+                }
             }
 
-            _eventAggregator.GetEvent<ReturnLinesEvent>().Publish(linePayload);
+            ReturnLinesPayload payload = new ReturnLinesPayload()
+            {
+                lineListPayloard = linePayload,
+                outputOrientation = orientation
+            };
+
+            _eventAggregator.GetEvent<ReturnLinesEvent>().Publish(payload);
         }
 
         #endregion
@@ -234,6 +247,37 @@ namespace GeoGenTwo.ContentModule.ViewModels
 
             x = y = int.MinValue;
             return false;
+        }
+
+        private Line RotateLine90Degrees(Line line)
+        {
+            // calculate the midpoint of the line
+            double midX = (line.X1 + line.X2) / 2;
+            double midY = (line.Y1 + line.Y2) / 2;
+
+            // translate the line
+            double startX = line.X1 - midX;
+            double startY = line.Y1 - midY;
+            double endX = line.X2 - midX;
+            double endY = line.Y2 - midY;
+
+            // rotate the translated line 90 degrees clockwise
+            double rotatedStartX = -startY;
+            double rotatedStartY = endX;
+            double rotatedEndX = -endY;
+            double rotatedEndY = startX;
+
+            Line rotatedLine = new Line()
+            {
+                X1 = rotatedStartX,
+                X2 = rotatedEndX,
+                Y1 = rotatedStartY,
+                Y2 = rotatedEndY,
+                Stroke = line.Stroke,
+                StrokeThickness = line.StrokeThickness
+            };
+
+            return rotatedLine;
         }
 
         #endregion

@@ -5,5 +5,5 @@ using System.Windows.Shapes;
 namespace GeoGenTwo.ContentModule
 {
     public class RequestLinesEvent : PubSubEvent<OutputOrientationType> { }
-    public class ReturnLinesEvent : PubSubEvent<List<Line>> { }
+    public class ReturnLinesEvent : PubSubEvent<ReturnLinesPayload> { }
 }
